@@ -6,7 +6,6 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/school"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -70,58 +69,18 @@
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="184dp" />
 
-        <TextView
+        <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Select School"
+            android:id="@+id/schoolspinner"
             android:textColor="#000"
-            android:textSize="15sp"
             android:textStyle="bold" />
-
-        <RadioGroup
-            android:layout_width="wrap_content"
+        <Spinner
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="278dp"
-            android:id="@+id/school">
-
-            <RadioButton
-                android:id="@+id/radioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="School of Computer Science" />
-
-            <RadioButton
-                android:id="@+id/radioButton2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="School of Engineering" />
-
-            <RadioButton
-                android:id="@+id/radioButton3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="School of Business" />
-
-            <RadioButton
-                android:id="@+id/radioButton4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="School of Design" />
-
-            <RadioButton
-                android:id="@+id/radioButton5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="School of Law" />
-
-        </RadioGroup>
-
+            android:id="@+id/societyspinner"
+            android:textColor="#000"
+            android:textStyle="bold" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -129,7 +88,6 @@
             android:textColor="#000"
             android:textSize="15sp"
             android:textStyle="bold" />
-
         <RadioGroup
             android:id="@+id/workshop"
             android:layout_width="match_parent"

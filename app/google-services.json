@@ -46,6 +46,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "91902893141-a5thskudmcdg5onljo7qr2kncef0rs81.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.agarwal.ashi.upesadminapp",
+            "certificate_hash": "12ce7d483ef4e25a198e233b6242281f1b3df271"
+          }
+        },
+        {
           "client_id": "91902893141-ov7jrhnfmv0kh0q9cb9faltrg7bp3g6j.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -60,8 +68,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "91902893141-ov7jrhnfmv0kh0q9cb9faltrg7bp3g6j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
