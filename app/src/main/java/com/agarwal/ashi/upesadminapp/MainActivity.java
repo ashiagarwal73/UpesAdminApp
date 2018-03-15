@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -39,6 +40,22 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                 });
+                EditText eventname=(EditText)findViewById(R.id.eventname);
+                EditText eventDesc=(EditText)findViewById(R.id.eventDescription);
+                EditText date=(EditText)findViewById(R.id.date);
+                EditText organiser=(EditText)findViewById(R.id.organiser);
+                EditText contact=(EditText)findViewById(R.id.contact);
+                String seventname;
+                String seventdesc;
+                String sdate;
+                String sorganiser;
+                String scontact;
+
+                seventname=eventname.getText().toString();
+                seventdesc=eventDesc.getText().toString();
+                sdate=date.getText().toString();
+                sorganiser=organiser.getText().toString();
+                scontact=contact.getText().toString();
                 EventsInformation eventsInformation = new EventsInformation();
                 Counter counter=new Counter();
                 eventsInformation.setEventName("new event");
