@@ -119,6 +119,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         submit=findViewById(R.id.submit);
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                counter = dataSnapshot.child("Counter").getValue(Counter.class);
+                count = counter.getCounterid();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+
+        });
         workshop.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -179,19 +192,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                mDatabase.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                       counter = dataSnapshot.child("Counter").getValue(Counter.class);
-                        count = counter.getCounterid();
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-
-                });
                 EventsInformation eventsInformation = new EventsInformation();
                 Counter counter=new Counter();
                 counter.setCounterid(++count);
