@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "91902893141",
+    "firebase_url": "https://upesapp.firebaseio.com",
+    "project_id": "upesapp",
+    "storage_bucket": "upesapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:91902893141:android:a50adb9df85e3d05",
+        "android_client_info": {
+          "package_name": "com.agarwal.ashi.upes_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "91902893141-ov7jrhnfmv0kh0q9cb9faltrg7bp3g6j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSC_3cAosdrx7WTaUTXf_2bzJ3fXh8eXs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:91902893141:android:6edc6e8e22201445",
+        "android_client_info": {
+          "package_name": "com.agarwal.ashi.upesadminapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "91902893141-ov7jrhnfmv0kh0q9cb9faltrg7bp3g6j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSC_3cAosdrx7WTaUTXf_2bzJ3fXh8eXs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
