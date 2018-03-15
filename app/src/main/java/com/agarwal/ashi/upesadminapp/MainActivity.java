@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 public class MainActivity extends AppCompatActivity {
 
     String sschool,sworkshop,sseminar,scompetition,scultural,ssports,swebinar;
-
+//  yes
     int count=0;
     Counter counter;
     Button submit;
