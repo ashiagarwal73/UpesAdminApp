@@ -1,10 +1,15 @@
 package com.agarwal.ashi.upesadminapp;
 
+import android.os.Build;
+import android.provider.MediaStore;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -14,6 +19,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
+
+    String sschool,sworkshop,sseminar,scompetition,scultural,ssports,swebinar;
+
     int count=0;
     Counter counter;
     Button submit;
@@ -25,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         mDatabase= FirebaseDatabase.getInstance().getReference();
         submit=findViewById(R.id.submit);
         submit.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View v) {
                 mDatabase.addValueEventListener(new ValueEventListener() {
@@ -45,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 EditText date=(EditText)findViewById(R.id.date);
                 EditText organiser=(EditText)findViewById(R.id.organiser);
                 EditText contact=(EditText)findViewById(R.id.contact);
-                String seventname;
+                String seventname=null;
                 String seventdesc;
                 String sdate;
                 String sorganiser;
@@ -56,6 +65,91 @@ public class MainActivity extends AppCompatActivity {
                 sdate=date.getText().toString();
                 sorganiser=organiser.getText().toString();
                 scontact=contact.getText().toString();
+
+                RadioGroup school=findViewById(R.id.school);
+                RadioGroup workshop=findViewById(R.id.workshop);
+                RadioGroup seminar=findViewById(R.id.seminar);
+                RadioGroup competition=findViewById(R.id.competition);
+                RadioGroup cultural=findViewById(R.id.cultural);
+                RadioGroup sports=findViewById(R.id.sports);
+                RadioGroup webinar=findViewById(R.id.webminar);
+
+//                school.setOnContextClickListener(new RadioGroup.OnCheckedChangeListener(){
+//                    @Override
+//                    public void onCheckedChanged(RadioGroup group, int checkedId) {
+//                        RadioButton radioButton=findViewById(checkedId);
+//                        sschool=radioButton.getText().toString();
+//
+//                    }
+//
+//
+//                });
+
+                workshop.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
+                    @Override
+                    public void onCheckedChanged(RadioGroup group, int checkedId) {
+                        RadioButton radioButton=findViewById(checkedId);
+                        sworkshop=radioButton.getText().toString();
+
+                    }
+
+
+                });
+
+                seminar.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
+                    @Override
+                    public void onCheckedChanged(RadioGroup group, int checkedId) {
+                        RadioButton radioButton=findViewById(checkedId);
+                        sseminar=radioButton.getText().toString();
+
+                    }
+
+
+                });
+
+                competition.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
+                    @Override
+                    public void onCheckedChanged(RadioGroup group, int checkedId) {
+                        RadioButton radioButton=findViewById(checkedId);
+                        scompetition=radioButton.getText().toString();
+
+                    }
+
+
+                });
+
+                cultural.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
+                    @Override
+                    public void onCheckedChanged(RadioGroup group, int checkedId) {
+                        RadioButton radioButton=findViewById(checkedId);
+                        scultural=radioButton.getText().toString();
+
+                    }
+
+
+                });
+
+                sports.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
+                    @Override
+                    public void onCheckedChanged(RadioGroup group, int checkedId) {
+                        RadioButton radioButton=findViewById(checkedId);
+                        ssports=radioButton.getText().toString();
+
+                    }
+
+
+                });
+
+                webinar.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
+                    @Override
+                    public void onCheckedChanged(RadioGroup group, int checkedId) {
+                        RadioButton radioButton=findViewById(checkedId);
+                        swebinar=radioButton.getText().toString();
+
+                    }
+
+
+                });
                 EventsInformation eventsInformation = new EventsInformation();
                 Counter counter=new Counter();
                 eventsInformation.setEventName("new event");

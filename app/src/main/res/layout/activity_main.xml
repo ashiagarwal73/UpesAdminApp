@@ -82,7 +82,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="278dp">
+            tools:layout_editor_absoluteY="278dp"
+            android:id="@+id/school">
 
             <RadioButton
                 android:id="@+id/radioButton"
