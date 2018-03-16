@@ -269,10 +269,19 @@
         </RadioGroup>
 
         <Button
+            android:id="@+id/up"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="click"
+            android:text="Upload" />
+
+        <Button
             android:id="@+id/submit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Submit" />
+
     </LinearLayout>
 </ScrollView>

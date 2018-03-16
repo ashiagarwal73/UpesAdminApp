@@ -1,5 +1,6 @@
 package com.agarwal.ashi.upesadminapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -22,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    Button but;
     String sschool,sworkshop,sseminar,scompetition,scultural,ssports,swebinar;
     int count=0;
     Counter counter;
@@ -58,6 +60,14 @@ public class MainActivity extends AppCompatActivity {
         mDatabase= FirebaseDatabase.getInstance().getReference();
         schoolspinner=findViewById(R.id.schoolspinner);
         societyspinner=findViewById(R.id.societyspinner);
+        but=findViewById(R.id.up);
+        but.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,Upload.class);
+                startActivity(intent);
+            }
+        });
         schoolspinner.setAdapter(aA);
         schoolspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
