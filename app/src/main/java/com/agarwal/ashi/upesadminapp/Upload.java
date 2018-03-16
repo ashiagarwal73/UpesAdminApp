@@ -88,7 +88,7 @@ public class Upload extends AppCompatActivity {
         builder.setItems(items, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int item) {
-                boolean result=Utility.checkPermission(getApplicationContext());
+                boolean result=Utility.checkPermission(Upload.this);
                 if (items[item].equals("Take Photo")) {
                     userChoosenTask="Take Photo";
                     if(result)

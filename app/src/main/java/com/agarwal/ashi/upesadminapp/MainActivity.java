@@ -222,6 +222,8 @@ public class MainActivity extends AppCompatActivity {
                 eventsInformation.setWebminar(swebinar);
                 eventsInformation.setSchool(selectedSchool);
                 mDatabase.child("EventsDetails").child(counter.getCounterid() + "").setValue(eventsInformation);
+                Intent intent=new Intent(MainActivity.this,Main2Activity.class);
+                startActivity(intent);
             }
         });
     }
