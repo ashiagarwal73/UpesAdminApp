@@ -30,14 +30,16 @@ import java.io.IOException;
 
 public class Upload extends AppCompatActivity {
     private int REQUEST_CAMERA = 0, SELECT_FILE = 1;
-    private Button btnSelect;
+    private Button btnSelect,btnupload;
     private ImageView ivImage;
     private String userChoosenTask;
+    Bitmap setBitmap;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.upload);
+        btnupload=findViewById(R.id.btnUpload);
         btnSelect = (Button) findViewById(R.id.btnSelectPhoto);
         btnSelect.setOnClickListener(new View.OnClickListener() {
 
@@ -46,24 +48,22 @@ public class Upload extends AppCompatActivity {
                 selectImage();
             }
         });
+        btnupload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ByteArrayOutputStream bStream = new ByteArrayOutputStream();
+                setBitmap.compress(Bitmap.CompressFormat.JPEG, 100, bStream);
+                byte[] byteArray = bStream.toByteArray();
+
+                Intent anotherIntent = new Intent(Upload.this, MainActivity.class);
+                anotherIntent.putExtra("image", byteArray);
+                setResult(Activity.RESULT_OK,anotherIntent);
+                finish();
+            }
+        });
         ivImage = (ImageView) findViewById(R.id.ivImage);
+
     }
-
-//    @Override
-//    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-//        setContentView(R.layout.upload);
-//        btnSelect = (Button) findViewById(R.id.btnSelectPhoto);
-//        btnSelect.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                selectImage();
-//            }
-//        });
-//        ivImage = (ImageView) findViewById(R.id.ivImage);
-//        super.onCreate(savedInstanceState, persistentState);
-//    }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {
@@ -150,7 +150,7 @@ public class Upload extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        setBitmap=thumbnail;
         ivImage.setImageBitmap(thumbnail);
     }
 
@@ -161,11 +161,12 @@ public class Upload extends AppCompatActivity {
         if (data != null) {
             try {
                 bm = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), data.getData());
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-
+        setBitmap=bm;
         ivImage.setImageBitmap(bm);
     }
 

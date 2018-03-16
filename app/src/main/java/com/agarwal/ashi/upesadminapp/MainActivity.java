@@ -1,6 +1,10 @@
 package com.agarwal.ashi.upesadminapp;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,12 +17,17 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 
@@ -26,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
     Button but;
     String sschool,sworkshop,sseminar,scompetition,scultural,ssports,swebinar;
     int count=0;
-    Counter counter;
     String society[]={"choose society"};
     EditText eventname,eventDesc,date,organiser,contact;
     RadioGroup workshop,seminar,competition,cultural,sports,webinar;
@@ -40,10 +48,17 @@ public class MainActivity extends AppCompatActivity {
     String selectedSchool="Choose School";
     String schools[]={"Choose School","School of Computer Science","School of Engineering","School of Design","School of Business","School of Law"};
     DatabaseReference mDatabase;
+    Uri downloadUrl;
+    StorageReference storageRef;
+    Counter counter;
+    byte[] byteArray;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+         storageRef= storage.getReference();
+
         eventname=(EditText)findViewById(R.id.eventname);
         eventDesc=(EditText)findViewById(R.id.eventDescription);
         date=(EditText)findViewById(R.id.date);
@@ -64,8 +79,9 @@ public class MainActivity extends AppCompatActivity {
         but.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bitmap bitmap;
                 Intent intent=new Intent(MainActivity.this,Upload.class);
-                startActivity(intent);
+                startActivityForResult(intent,1);
             }
         });
         schoolspinner.setAdapter(aA);
@@ -202,8 +218,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                EventsInformation eventsInformation = new EventsInformation();
-                Counter counter=new Counter();
+                final EventsInformation eventsInformation = new EventsInformation();
+                counter=new Counter();
                 counter.setCounterid(++count);
                 mDatabase.child("Counter").setValue(counter);
                 eventsInformation.setEventName(eventname.getText().toString());
@@ -221,10 +237,47 @@ public class MainActivity extends AppCompatActivity {
                 eventsInformation.setSports(ssports);
                 eventsInformation.setWebminar(swebinar);
                 eventsInformation.setSchool(selectedSchool);
-                mDatabase.child("EventsDetails").child(counter.getCounterid() + "").setValue(eventsInformation);
-                Intent intent=new Intent(MainActivity.this,Main2Activity.class);
-                startActivity(intent);
+                eventsInformation.setSociety(selectedsociety);
+                //Bitmap bmp;
+                StorageReference imagesRef = storageRef.child(eventsInformation.getEventName()+".png");
+                if(byteArray==null)
+                {
+                    Toast.makeText(MainActivity.this, "Upload image", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    //bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+                    UploadTask uploadTask = imagesRef.putBytes(byteArray);
+                    uploadTask.addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            // Handle unsuccessful uploads
+                        }
+                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
+                             downloadUrl = taskSnapshot.getDownloadUrl();
+                            Toast.makeText(MainActivity.this, ""+downloadUrl, Toast.LENGTH_SHORT).show();
+                            eventsInformation.setImage(downloadUrl.toString());
+                            mDatabase.child("EventsDetails").child(counter.getCounterid() + "").setValue(eventsInformation);
+                            Intent intent=new Intent(MainActivity.this,Main2Activity.class);
+                            startActivity(intent);
+
+                        }
+                    });
+                }
+
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK){
+                byteArray = data.getByteArrayExtra("image");
+            }
+        }
     }
 }
