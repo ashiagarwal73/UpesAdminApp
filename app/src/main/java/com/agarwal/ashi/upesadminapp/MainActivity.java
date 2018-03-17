@@ -259,10 +259,11 @@ public class MainActivity extends AppCompatActivity {
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
                              downloadUrl = taskSnapshot.getDownloadUrl();
-                            Toast.makeText(MainActivity.this, ""+downloadUrl, Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(MainActivity.this, ""+downloadUrl, Toast.LENGTH_SHORT).show();
                             eventsInformation.setImage(downloadUrl.toString());
                             mDatabase.child("EventsDetails").child(counter.getCounterid() + "").setValue(eventsInformation);
                             Intent intent=new Intent(MainActivity.this,Main2Activity.class);
+                            Toast.makeText(MainActivity.this, "Data posted succesfully", Toast.LENGTH_SHORT).show();
                             startActivity(intent);
 
                         }
