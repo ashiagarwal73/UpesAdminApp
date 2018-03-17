@@ -226,7 +226,7 @@ public class MainActivity extends AppCompatActivity {
                 {
                     final EventsInformation eventsInformation = new EventsInformation();
                     counter=new Counter();
-                    counter.setCounterid(++count);
+                    counter.setCounterid(count--);
                     mDatabase.child("Counter").setValue(counter);
                     eventsInformation.setEventName(eventname.getText().toString());
                     eventsInformation.setEventDescription(eventDesc.getText().toString());
@@ -280,7 +280,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1) {
