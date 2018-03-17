@@ -113,21 +113,24 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/date"
+                android:id="@+id/dated"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="32dp"
                 android:background="#000"
                 android:text="date"
+                android:textColor="#fff"
                 android:textSize="15sp"
-                android:textColor="#fff" />
+                android:onClick="showOnDialogClick"
+                />
 
             <TextView
-                android:layout_width="228dp"
-                android:layout_height="46dp"
+                android:id="@+id/date"
+                android:layout_width="263dp"
+                android:layout_height="32dp"
                 android:layout_gravity="right"
                 android:layout_marginTop="15dp"
                 android:gravity="center"
-                android:text="12/12/2018"
+                android:text="Enter Date"
                 android:textColor="#000"
                 android:textSize="15sp"
                 android:textStyle="bold" />
