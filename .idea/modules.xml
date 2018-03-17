@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/UpesAdminApp.iml" filepath="$PROJECT_DIR$/.idea/UpesAdminApp.iml" />
-      <module fileurl="file://C:\Users\Nakul\AndroidStudioProjects\UpesAdminApp\UpesAdminApp.iml" filepath="C:\Users\Nakul\AndroidStudioProjects\UpesAdminApp\UpesAdminApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/UpesAdminApp.iml" filepath="$PROJECT_DIR$/UpesAdminApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\Nakul\AndroidStudioProjects\UpesAdminApp\app\app.iml" filepath="C:\Users\Nakul\AndroidStudioProjects\UpesAdminApp\app\app.iml" />
     </modules>
   </component>
 </project>
