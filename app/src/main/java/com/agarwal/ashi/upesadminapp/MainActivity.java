@@ -36,6 +36,10 @@ import com.google.firebase.storage.UploadTask;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    DatePickerDialog dialog;
+    DatePicker dp;
+    long a=System.currentTimeMillis()-1000;
+    String s;
     Button dated;
     int year_x,month_x,day_x;
     static final int Dialog_id=0;
@@ -225,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(eventname.getText().toString().equals("")||eventDesc.getText().toString().equals("")||date.getText().toString().equals("")||organiser.getText().toString().equals("")||contact.getText().toString().equals("")||contact.getText().toString().equals("")||sworkshop.equals("")||sseminar.equals("")||scompetition.equals("")||scultural.equals("")||swebinar.equals("")||selectedSchool.equals(""))
+                if(eventname.getText().toString().equals("")||eventDesc.getText().toString().equals("")||s.equals("")||organiser.getText().toString().equals("")||contact.getText().toString().equals("")||contact.getText().toString().equals("")||sworkshop.equals("")||sseminar.equals("")||scompetition.equals("")||scultural.equals("")||swebinar.equals("")||selectedSchool.equals(""))
                 {
                     Toast.makeText(MainActivity.this, "Enter all Details", Toast.LENGTH_SHORT).show();
                 }
@@ -237,8 +241,8 @@ public class MainActivity extends AppCompatActivity {
                     mDatabase.child("Counter").setValue(counter);
                     eventsInformation.setEventName(eventname.getText().toString());
                     eventsInformation.setEventDescription(eventDesc.getText().toString());
-                    sdate=date.getText().toString();
-                    eventsInformation.setDate(sdate);
+                   // sdate=date.getText().toString();
+                    eventsInformation.setDate(s);
                     sorganiser=organiser.getText().toString();
                     eventsInformation.setOrganiser(sorganiser);
                     scontact=contact.getText().toString();
@@ -290,6 +294,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void showOnDialogClick(View View){
         dated=findViewById(R.id.dated);
+
         dated.setOnClickListener(
                 new View.OnClickListener(){
 
@@ -302,19 +307,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected Dialog onCreateDialog(int id){
-        if(id == Dialog_id)
-            return new DatePickerDialog(MainActivity.this,dpickerListener,year_x,month_x,day_x);
-            return null;
+        if(id == Dialog_id) {
+            dialog = new DatePickerDialog(MainActivity.this, dpickerListener, year_x, month_x, day_x);
+        }
+        dialog.getDatePicker().setMinDate(a);
+            return dialog;
+
     }
 
     private DatePickerDialog.OnDateSetListener dpickerListener
             =new DatePickerDialog.OnDateSetListener() {
+        long a=System.currentTimeMillis()-1000;
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+
             year_x=year;
             month_x=month;
             day_x=dayOfMonth;
-            String s;
             s=day_x+"/"+month_x+"/"+year_x;
             date.setText(s);
         }
