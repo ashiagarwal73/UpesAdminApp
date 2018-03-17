@@ -35,32 +35,39 @@ public class SignUp extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Society society=new Society();
-                RadioButton radioButton=findViewById(school.getCheckedRadioButtonId());
-                society.setSchool(radioButton.getText().toString());
-                society.setSocietyName(name.getText().toString());
-                society.setPassword(password.getText().toString());
-                society.setId(id.getText().toString());
-                mDatabase.child("OTP").addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        if(otp.getText().toString().equals(dataSnapshot.getValue().toString()))
-                        {
-                            mDatabase.child("Society").child(society.getId()).setValue(society);
-                            Intent intent=new Intent(SignUp.this,Main2Activity.class);
-                            startActivity(intent);
+                if(school.getCheckedRadioButtonId()==0||name.getText().toString().equals("")||password.getText().toString().equals("")||id.getText().toString().equals(""))
+                {
+                    Toast.makeText(SignUp.this, "Enter all Details", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    final Society society=new Society();
+                    RadioButton radioButton=findViewById(school.getCheckedRadioButtonId());
+                    society.setSchool(radioButton.getText().toString());
+                    society.setSocietyName(name.getText().toString());
+                    society.setPassword(password.getText().toString());
+                    society.setId(id.getText().toString());
+                    mDatabase.child("OTP").addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            if(otp.getText().toString().equals(dataSnapshot.getValue().toString()))
+                            {
+                                mDatabase.child("Society").child(society.getId()).setValue(society);
+                                Intent intent=new Intent(SignUp.this,Main2Activity.class);
+                                startActivity(intent);
+                            }
+                            else
+                            {
+                                Toast.makeText(SignUp.this, "Enter Valid OTP", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                        else
-                        {
-                            Toast.makeText(SignUp.this, "Enter Valid OTP", Toast.LENGTH_SHORT).show();
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
                         }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
+                    });
+                }
 
             }
         });

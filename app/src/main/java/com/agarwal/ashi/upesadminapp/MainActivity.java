@@ -218,57 +218,64 @@ public class MainActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                final EventsInformation eventsInformation = new EventsInformation();
-                counter=new Counter();
-                counter.setCounterid(++count);
-                mDatabase.child("Counter").setValue(counter);
-                eventsInformation.setEventName(eventname.getText().toString());
-                eventsInformation.setEventDescription(eventDesc.getText().toString());
-                sdate=date.getText().toString();
-                eventsInformation.setDate(sdate);
-                sorganiser=organiser.getText().toString();
-                eventsInformation.setOrganiser(sorganiser);
-                scontact=contact.getText().toString();
-                eventsInformation.setContact(scontact);
-                eventsInformation.setWorkshop(sworkshop);
-                eventsInformation.setSeminar(sseminar);
-                eventsInformation.setCompetition(scompetition);
-                eventsInformation.setCultural(scultural);
-                eventsInformation.setSports(ssports);
-                eventsInformation.setWebminar(swebinar);
-                eventsInformation.setSchool(selectedSchool);
-                eventsInformation.setSociety(selectedsociety);
-                //Bitmap bmp;
-                StorageReference imagesRef = storageRef.child(eventsInformation.getEventName()+".png");
-                if(byteArray==null)
+                if(eventname.getText().toString().equals("")||eventDesc.getText().toString().equals("")||date.getText().toString().equals("")||organiser.getText().toString().equals("")||contact.getText().toString().equals("")||contact.getText().toString().equals("")||sworkshop.equals("")||sseminar.equals("")||scompetition.equals("")||scultural.equals("")||swebinar.equals("")||selectedSchool.equals(""))
                 {
-                    Toast.makeText(MainActivity.this, "Upload image", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Enter all Details", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
-                    //bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-                    UploadTask uploadTask = imagesRef.putBytes(byteArray);
-                    uploadTask.addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception exception) {
-                            // Handle unsuccessful uploads
-                        }
-                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
-                             downloadUrl = taskSnapshot.getDownloadUrl();
-                            //Toast.makeText(MainActivity.this, ""+downloadUrl, Toast.LENGTH_SHORT).show();
-                            eventsInformation.setImage(downloadUrl.toString());
-                            mDatabase.child("EventsDetails").child(counter.getCounterid() + "").setValue(eventsInformation);
-                            Intent intent=new Intent(MainActivity.this,Main2Activity.class);
-                            Toast.makeText(MainActivity.this, "Data posted succesfully", Toast.LENGTH_SHORT).show();
-                            startActivity(intent);
+                    final EventsInformation eventsInformation = new EventsInformation();
+                    counter=new Counter();
+                    counter.setCounterid(++count);
+                    mDatabase.child("Counter").setValue(counter);
+                    eventsInformation.setEventName(eventname.getText().toString());
+                    eventsInformation.setEventDescription(eventDesc.getText().toString());
+                    sdate=date.getText().toString();
+                    eventsInformation.setDate(sdate);
+                    sorganiser=organiser.getText().toString();
+                    eventsInformation.setOrganiser(sorganiser);
+                    scontact=contact.getText().toString();
+                    eventsInformation.setContact(scontact);
+                    eventsInformation.setWorkshop(sworkshop);
+                    eventsInformation.setSeminar(sseminar);
+                    eventsInformation.setCompetition(scompetition);
+                    eventsInformation.setCultural(scultural);
+                    eventsInformation.setSports(ssports);
+                    eventsInformation.setWebminar(swebinar);
+                    eventsInformation.setSchool(selectedSchool);
+                    eventsInformation.setSociety(selectedsociety);
+                    //Bitmap bmp;
+                    StorageReference imagesRef = storageRef.child(eventsInformation.getEventName()+".png");
+                    if(byteArray==null)
+                    {
+                        Toast.makeText(MainActivity.this, "Upload image", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        //bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+                        UploadTask uploadTask = imagesRef.putBytes(byteArray);
+                        uploadTask.addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception exception) {
+                                // Handle unsuccessful uploads
+                            }
+                        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
+                                downloadUrl = taskSnapshot.getDownloadUrl();
+                                //Toast.makeText(MainActivity.this, ""+downloadUrl, Toast.LENGTH_SHORT).show();
+                                eventsInformation.setImage(downloadUrl.toString());
+                                mDatabase.child("EventsDetails").child(counter.getCounterid() + "").setValue(eventsInformation);
+                                Intent intent=new Intent(MainActivity.this,Main2Activity.class);
+                                Toast.makeText(MainActivity.this, "Data posted succesfully", Toast.LENGTH_SHORT).show();
+                                startActivity(intent);
 
-                        }
-                    });
+                            }
+                        });
+                    }
                 }
+
 
             }
         });

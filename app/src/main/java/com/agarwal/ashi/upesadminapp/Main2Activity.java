@@ -43,12 +43,10 @@ public class Main2Activity extends AppCompatActivity {
             startActivity(inte);
             }
         });
-        if(sharedPreferencesPassword!=null&&sharedPreferencesId!=null)
-        {
+        sharedPreferencesId=getSharedPreferences("sharedid",MODE_PRIVATE);
+        sharedPreferencesPassword=getSharedPreferences("sharedpassword",MODE_PRIVATE);
            editText.setText(sharedPreferencesId.getString("sharedid",""));
            editText2.setText(sharedPreferencesPassword.getString("sharedpassword",""));
-        }
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,8 +68,7 @@ public class Main2Activity extends AppCompatActivity {
                                     Society soc=usersnapshot.getValue(Society.class);
                                     if(soc.getPassword().equals(password))
                                     {
-                                        sharedPreferencesId=getSharedPreferences("sharedid",MODE_PRIVATE);
-                                        sharedPreferencesPassword=getSharedPreferences("sharedpassword",MODE_PRIVATE);
+
                                         SharedPreferences.Editor editor=sharedPreferencesId.edit();
                                         editor.putString("sharedid",id);
                                         SharedPreferences.Editor editor1=sharedPreferencesPassword.edit();
