@@ -17,6 +17,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -52,13 +53,20 @@ public class Upload extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ByteArrayOutputStream bStream = new ByteArrayOutputStream();
-                setBitmap.compress(Bitmap.CompressFormat.JPEG, 100, bStream);
-                byte[] byteArray = bStream.toByteArray();
+                if(setBitmap==null)
+                {
+                    Toast.makeText(Upload.this, "Select image", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    setBitmap.compress(Bitmap.CompressFormat.JPEG, 100, bStream);
+                    byte[] byteArray = bStream.toByteArray();
+                    Intent anotherIntent = new Intent(Upload.this, MainActivity.class);
+                    anotherIntent.putExtra("image", byteArray);
+                    setResult(Activity.RESULT_OK,anotherIntent);
+                    finish();
+                }
 
-                Intent anotherIntent = new Intent(Upload.this, MainActivity.class);
-                anotherIntent.putExtra("image", byteArray);
-                setResult(Activity.RESULT_OK,anotherIntent);
-                finish();
             }
         });
         ivImage = (ImageView) findViewById(R.id.ivImage);
@@ -134,7 +142,7 @@ public class Upload extends AppCompatActivity {
     private void onCaptureImageResult(Intent data) {
         Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+        thumbnail.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
 
         File destination = new File(Environment.getExternalStorageDirectory(),
                 System.currentTimeMillis() + ".jpg");
