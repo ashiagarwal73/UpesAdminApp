@@ -36,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
     String sschool,sworkshop,sseminar,scompetition,scultural,ssports,swebinar;
     int count=0;
     String society[]={"choose society"};
-    EditText eventname,eventDesc,date,organiser,contact;
+    EditText eventname,eventDesc,organiser,contact;
+    Button date;
     RadioGroup workshop,seminar,competition,cultural,sports,webinar;
     Spinner schoolspinner,societyspinner;
     Button submit;
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
         eventname=(EditText)findViewById(R.id.eventname);
         eventDesc=(EditText)findViewById(R.id.eventDescription);
-        date=(EditText)findViewById(R.id.date);
+        date=findViewById(R.id.date);
         organiser=(EditText)findViewById(R.id.organiser);
         contact=(EditText)findViewById(R.id.contact);
         workshop=findViewById(R.id.workshop);

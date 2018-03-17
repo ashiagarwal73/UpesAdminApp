@@ -1,41 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     android:orientation="vertical"
     android:padding="10dp" >
-
+        <ImageView
+            android:id="@+id/ivImage"
+            android:layout_width="300dp"
+            android:layout_height="400dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_photo_black_24dp" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:orientation="horizontal"
         android:padding="5dp" >
 
         <Button
             android:id="@+id/btnSelectPhoto"
             android:layout_width="match_parent"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="Select Photo" />
+        <Button
+            android:id="@+id/btnUpload"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Upload Image" />
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="10dp" >
-
-        <ImageView
-            android:id="@+id/ivImage"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            android:src="@drawable/ic_launcher_background" />
-    </LinearLayout>
-    <Button
-        android:id="@+id/btnUpload"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Upload Image" />
 </LinearLayout>
+</ScrollView>
