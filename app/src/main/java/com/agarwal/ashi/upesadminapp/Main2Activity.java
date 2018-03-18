@@ -75,7 +75,8 @@ public class Main2Activity extends AppCompatActivity {
                                         editor1.putString("sharedpassword",password);
                                         editor.commit();
                                         editor1.commit();
-                                        Intent intent=new Intent(Main2Activity.this,MainActivity.class);
+                                        Intent intent=new Intent(Main2Activity.this,Main3Activity.class);
+                                        intent.putExtra("loginId",id);
                                         startActivity(intent);
                                     }
                                     else {

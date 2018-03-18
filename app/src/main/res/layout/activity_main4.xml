@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context="com.agarwal.ashi.upesadminapp.MainActivity">
+        tools:context="com.agarwal.ashi.upesadminapp.Main4Activity">
 
         <TextView
             android:layout_width="match_parent"
@@ -18,6 +18,38 @@
             android:textColor="#000"
             android:textSize="25sp"
             android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Event Id:"
+                android:textColor="#000"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/eventid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Enter event Id"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="0dp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="39dp"
+                android:textSize="10sp"
+                android:text="Search"
+                android:onClick="onSearchClick"
+                android:id="@+id/search"/>
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="horizontal"
@@ -30,82 +62,82 @@
                 android:textStyle="bold"
                 android:gravity="center"
                 android:textColor="#000"/>
-        <EditText
-            android:id="@+id/eventname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter event name"
-            android:inputType="textPersonName"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="0dp" />
+            <EditText
+                android:id="@+id/eventname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter event name"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="0dp" />
         </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Event Description :"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:textColor="#000"/>
-        <EditText
-            android:id="@+id/eventDescription"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter event Description"
-            android:inputType="textPostalAddress"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="46dp" />
-    </LinearLayout>
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Event Description :"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="#000"/>
+            <EditText
+                android:id="@+id/eventDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter event Description"
+                android:inputType="textPostalAddress"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="46dp" />
+        </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Organiser :"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:textColor="#000"/>
-        <EditText
-            android:id="@+id/organiser"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint=" Enter organiser name"
-            android:inputType="textPersonName"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="138dp" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Phone Number :"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:textColor="#000"/>
-        <EditText
-            android:id="@+id/contact"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Organiser :"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="#000"/>
+            <EditText
+                android:id="@+id/organiser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint=" Enter organiser name"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="138dp" />
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Phone Number :"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="#000"/>
+            <EditText
+                android:id="@+id/contact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
 
-            android:hint="Enter contact"
-            android:inputType="phone"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="184dp" />
-    </LinearLayout>
+                android:hint="Enter contact"
+                android:inputType="phone"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="184dp" />
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="horizontal"
@@ -149,7 +181,6 @@
                 tools:layout_editor_absoluteY="0dp" />
         </LinearLayout>
 
-
         <LinearLayout
             android:layout_width="337dp"
             android:layout_height="wrap_content"
@@ -163,6 +194,8 @@
                 android:text="date"
                 android:textColor="#fff"
                 android:textSize="15sp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="0"
                 android:onClick="showOnDialogClick"
                 />
 
@@ -178,23 +211,47 @@
                 android:textSize="15sp"
                 android:textStyle="bold" />
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/submit"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Update" />
+            <Button
+                android:id="@+id/up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="click"
+                android:visibility="invisible"
+                android:text="Change Image" />
+
+        </LinearLayout>
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/schoolspinner"
             android:textColor="#000"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="invisible"/>
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/societyspinner"
             android:textColor="#000"
+            android:visibility="invisible"
             android:textStyle="bold" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Is it a workshop ?"
             android:textColor="#000"
+            android:visibility="invisible"
             android:textSize="15sp"
             android:textStyle="bold" />
         <RadioGroup
@@ -202,6 +259,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:visibility="invisible"
             android:orientation="horizontal"
             tools:layout_editor_absoluteY="160dp">
 
@@ -226,6 +284,7 @@
             android:layout_height="wrap_content"
             android:text="Is it a semminar ?"
             android:textColor="#000"
+            android:visibility="invisible"
             android:textSize="15sp"
             android:textStyle="bold" />
 
@@ -235,8 +294,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="horizontal"
-            tools:layout_editor_absoluteY="22dp">
-
+            tools:layout_editor_absoluteY="22dp"
+            android:visibility="invisible">
             <RadioButton
                 android:id="@+id/radioButton8"
                 android:layout_width="wrap_content"
@@ -257,6 +316,7 @@
             android:layout_height="wrap_content"
             android:text="Is it a Competetion ?"
             android:textColor="#000"
+            android:visibility="invisible"
             android:textSize="15sp"
             android:textStyle="bold" />
 
@@ -265,6 +325,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:visibility="invisible"
             android:orientation="horizontal"
             tools:layout_editor_absoluteY="22dp">
 
@@ -288,6 +349,7 @@
             android:layout_height="wrap_content"
             android:text="Is it a cultural event ?"
             android:textColor="#000"
+            android:visibility="invisible"
             android:textSize="15sp"
             android:textStyle="bold" />
 
@@ -296,6 +358,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:visibility="invisible"
             android:orientation="horizontal"
             tools:layout_editor_absoluteY="22dp">
 
@@ -319,6 +382,7 @@
             android:layout_height="wrap_content"
             android:text="Is it a sports related event ?"
             android:textColor="#000"
+            android:visibility="invisible"
             android:textSize="15sp"
             android:textStyle="bold" />
 
@@ -327,6 +391,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:visibility="invisible"
             android:orientation="horizontal"
             tools:layout_editor_absoluteY="22dp">
 
@@ -351,6 +416,7 @@
             android:text="Is it a webminar ?"
             android:textColor="#000"
             android:textSize="15sp"
+            android:visibility="invisible"
             android:textStyle="bold" />
 
         <RadioGroup
@@ -358,6 +424,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:visibility="invisible"
             android:orientation="horizontal"
             tools:layout_editor_absoluteY="22dp">
 
@@ -374,27 +441,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="no" />
-
         </RadioGroup>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:orientation="horizontal">
-        <Button
-            android:id="@+id/up"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="click"
-            android:layout_weight="1"
-            android:text="Upload Image" />
-        <Button
-            android:id="@+id/submit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Submit" />
-        </LinearLayout>
     </LinearLayout>
 </ScrollView>
