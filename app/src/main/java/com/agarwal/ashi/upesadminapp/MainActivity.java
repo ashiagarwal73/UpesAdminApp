@@ -3,10 +3,12 @@ import java.util.Random;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -65,15 +68,17 @@ public class MainActivity extends AppCompatActivity {
     Counter counter;
     String loginid;
     byte[] byteArray;
+    ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Intent inten=getIntent();
+        final Intent inten=getIntent();
         loginid=inten.getStringExtra("loginId");
         FirebaseStorage storage = FirebaseStorage.getInstance();
          storageRef= storage.getReference();
         eventname=(EditText)findViewById(R.id.eventname);
+        progressBar=findViewById(R.id.progrss);
         eventDesc=(EditText)findViewById(R.id.eventDescription);
         eventtime=findViewById(R.id.eventtime);
         eventvenue=findViewById(R.id.eventvenue);
@@ -241,7 +246,8 @@ public class MainActivity extends AppCompatActivity {
                 {
                     final EventsInformation eventsInformation = new EventsInformation();
                     counter=new Counter();
-                    counter.setCounterid(count--);
+                    count--;
+                    counter.setCounterid(count);
                     mDatabase.child("Counter").setValue(counter);
                     eventsInformation.setEventName(eventname.getText().toString());
                     eventsInformation.setEventDescription(eventDesc.getText().toString());
@@ -269,9 +275,10 @@ public class MainActivity extends AppCompatActivity {
                     }
                     else
                     {
+                        progressBar.setVisibility(View.VISIBLE);
                         //bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-                        UploadTask uploadTask = imagesRef.putBytes(byteArray);
-                        uploadTask.addOnFailureListener(new OnFailureListener() {
+                                UploadTask uploadTask = imagesRef.putBytes(byteArray);
+                                uploadTask.addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception exception) {
                                 // Handle unsuccessful uploads
@@ -286,16 +293,15 @@ public class MainActivity extends AppCompatActivity {
                                 eventsInformation.setLoginid(loginid);
                                 eventsInformation.setEventid(counter.getCounterid()+"");
                                 mDatabase.child("EventsDetails").child(counter.getCounterid() + "").setValue(eventsInformation);
-                                Intent intent=new Intent(MainActivity.this,Main2Activity.class);
+                                progressBar.setVisibility(View.INVISIBLE);
+                                Intent intent = new Intent(MainActivity.this, Main2Activity.class);
                                 Toast.makeText(MainActivity.this, "Data posted succesfully", Toast.LENGTH_SHORT).show();
+                                intent.putExtra("eventid",counter.getCounterid()+"");
                                 startActivity(intent);
-
                             }
                         });
                     }
                 }
-
-
             }
         });
     }

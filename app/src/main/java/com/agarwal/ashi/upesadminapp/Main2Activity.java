@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +25,7 @@ public class Main2Activity extends AppCompatActivity {
     Button button;
     String id;
     String password;
+    ProgressBar progressBar;
     DatabaseReference mDatabase;
     SharedPreferences sharedPreferencesId;
     SharedPreferences sharedPreferencesPassword;
@@ -31,9 +33,17 @@ public class Main2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        Intent intent=getIntent();
+        if(intent!=null)
+        {
+            TextView textView=findViewById(R.id.eventid);
+            String eve=intent.getStringExtra("eventid");
+            textView.setText(textView.getText().toString()+eve);
+        }
         editText=findViewById(R.id.editText);
         editText2=findViewById(R.id.editText2);
         button=findViewById(R.id.button2);
+        progressBar=findViewById(R.id.progress);
         mDatabase= FirebaseDatabase.getInstance().getReference();
         signup=findViewById(R.id.textView2);
         signup.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +67,7 @@ public class Main2Activity extends AppCompatActivity {
                     Toast.makeText(Main2Activity.this, "Please Enter id password", Toast.LENGTH_SHORT).show();
                 }
                 else{
+                    progressBar.setVisibility(View.VISIBLE);
                     Query query=mDatabase.child("Society").orderByChild("id").equalTo(id);
                     query.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -75,6 +86,7 @@ public class Main2Activity extends AppCompatActivity {
                                         editor1.putString("sharedpassword",password);
                                         editor.commit();
                                         editor1.commit();
+                                        progressBar.setVisibility(View.INVISIBLE);
                                         Intent intent=new Intent(Main2Activity.this,Main3Activity.class);
                                         intent.putExtra("loginId",id);
                                         startActivity(intent);
