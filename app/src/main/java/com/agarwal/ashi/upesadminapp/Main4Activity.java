@@ -292,8 +292,19 @@ public class Main4Activity extends AppCompatActivity {
             year_x=year;
             month_x=month+1;
             day_x=dayOfMonth;
-            s=day_x+"/"+month_x+"/"+year_x;
+            String d=""+day_x;
+            String m=""+month_x;
+            if(day_x<10)
+            {
+                d="0"+day_x;
+            }
+            if(month_x<10)
+            {
+                m="0"+month_x;
+            }
+            s=d+"/"+m+"/"+year_x;
             date.setText(s);
+            s="";
         }
     };
     @Override

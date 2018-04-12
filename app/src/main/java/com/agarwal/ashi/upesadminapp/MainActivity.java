@@ -50,18 +50,20 @@ public class MainActivity extends AppCompatActivity {
     String sschool,sworkshop,sseminar,scompetition,scultural,ssports,swebinar;
     int count=0;
     String society[]={"choose society"};
+    String societyid[]=null;
     EditText eventname,eventDesc,organiser,contact,eventtime,eventvenue;
     TextView date;
     RadioGroup workshop,seminar,competition,cultural,sports,webinar;
     Spinner schoolspinner,societyspinner;
     Button submit;
     String selectedsociety;
+    String selectedsocietyid;
     String seventdesc;
     String sdate;
     String sorganiser;
     String scontact;
     String selectedSchool="Choose School";
-    String schools[]={"Choose School","School of Computer Science","School of Engineering","School of Design","School of Business","School of Law"};
+    String schools[]={"Choose School","School of Computer Science","School of Engineering","School of Design","School of Business","School of Law","All Schools"};
     DatabaseReference mDatabase;
     Uri downloadUrl;
     StorageReference storageRef;
@@ -127,14 +129,13 @@ public class MainActivity extends AppCompatActivity {
                                         {
                                             societyArrayList.add(q.getValue(Society.class));
                                         }
-
                                     }
                                 }
                                 society=new String[societyArrayList.size()];
                                 for (int i=0;i<societyArrayList.size();i++)
                                 {
                                     society[i]=societyArrayList.get(i).getSocietyName();
-                                }
+                                    }
                                 societyArrayList.clear();
                            ArrayAdapter<String> aB=new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_spinner_dropdown_item,society);
                            societyspinner.setAdapter(aB);
@@ -305,10 +306,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     public void showOnDialogClick(View View){
         dated=findViewById(R.id.dated);
-
         dated.setOnClickListener(
                 new View.OnClickListener(){
 

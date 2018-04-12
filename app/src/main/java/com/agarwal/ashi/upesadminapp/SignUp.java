@@ -52,7 +52,7 @@ public class SignUp extends AppCompatActivity {
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             if(otp.getText().toString().equals(dataSnapshot.getValue().toString()))
                             {
-                                mDatabase.child("Society").child(society.getId()).setValue(society);
+                                mDatabase.child("Society").child(society.getSocietyName()).setValue(society);
                                 Intent intent=new Intent(SignUp.this,Main2Activity.class);
                                 startActivity(intent);
                             }
