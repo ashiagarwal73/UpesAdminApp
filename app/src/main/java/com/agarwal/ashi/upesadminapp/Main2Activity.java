@@ -86,19 +86,21 @@ public class Main2Activity extends AppCompatActivity {
                                         editor1.putString("sharedpassword",password);
                                         editor.commit();
                                         editor1.commit();
-                                        progressBar.setVisibility(View.INVISIBLE);
+
                                         Intent intent=new Intent(Main2Activity.this,Main3Activity.class);
                                         intent.putExtra("loginId",id);
                                         startActivity(intent);
                                     }
                                     else {
                                         Toast.makeText(Main2Activity.this, "Wrong password", Toast.LENGTH_SHORT).show();
+                                        progressBar.setVisibility(View.INVISIBLE);
                                     }
 
                                 }
                             }
                             else {
                                 Toast.makeText(Main2Activity.this, "User id doesnot exist", Toast.LENGTH_SHORT).show();
+                                progressBar.setVisibility(View.INVISIBLE);
                             }
                         }
 
